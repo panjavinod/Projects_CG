@@ -15,6 +15,10 @@ public class DuplicateElements_UsingJava8 {
 //		            .collect(Collectors.toSet());
 //		System.out.println(DuplicateNumbers);
 		
+		         numbers.stream()
+				.collect(Collectors.groupingBy(i->i,Collectors.counting()))
+				.entrySet().stream().filter(i->i.getValue()>1).forEach(entry -> System.out.println(entry.getKey()));
+		
 		Set<Integer> dupElements=new HashSet<Integer>();
 		Set<Integer> DuplicateNumbers=numbers.stream().filter(i-> !dupElements.add(i))
 	            .collect(Collectors.toSet());

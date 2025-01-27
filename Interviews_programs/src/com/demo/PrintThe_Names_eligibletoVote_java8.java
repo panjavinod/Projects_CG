@@ -1,7 +1,9 @@
 package com.demo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 class Person{
@@ -12,6 +14,23 @@ class Person{
 		this.name = name;
 		this.age = age;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", age=" + age + "]";
@@ -45,6 +64,23 @@ public class PrintThe_Names_eligibletoVote_java8 {
 //				                     .map(p->p.name)
 //				                     .collect(Collectors.toList());
 //		System.out.println(names);
+		
+		
+		
+		
+		//Given a list of Person objects with name and age fields,
+		//write a program to find the oldest person using streams.
+		
+		
+		 Optional<Person> oldperson = personList.stream().max(Comparator.comparing(Person::getAge));
+		 
+		 oldperson.ifPresent(person -> System.out.println(person.getName()+" "+ person.age));
+		 
+		 Optional<Person> person =personList.stream()
+		    .sorted((o1, o2) -> o2.getAge() - o1.getAge()).findFirst();
+		    //.forEach(person -> System.out.println(person.getName() + " - " + person.getAge())); 
+
+		 System.out.println(person);
 	}
 
 }
